@@ -33,7 +33,7 @@ const initPayment = async (req, res) => {
     // Set customer info
     payment.setCusInfo({
         name: user.email,
-        email: user.email,
+        email: userEmail,
         add1: "144, East Kazipara, Mirpur",
         add2: "Dhaka",
         city: "Dhaka",
@@ -41,14 +41,14 @@ const initPayment = async (req, res) => {
         postcode: 1216,
         country: "Bangladesh",
         phone: "010000000000",
-        fax: user.email,
+        fax: userEmail,
     });
 
     // Set shipping info
     payment.setShippingInfo({
         method: "Courier", //Shipping method of the order. Example: YES or NO or Courier
         num_item: 1,
-        name: user.email,
+        name: userEmail,
         add1: "144, East Kazipara, Mirpur",
         add2: "Dhaka",
         city: "Dhaka",
