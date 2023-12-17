@@ -8,7 +8,8 @@ const { Order } = require('../models/orders');
 const initPayment = async (req, res) => {
     const userId = req.user._id;
     const userEmail = req.user.email;
-    const order = await Order.find({ userId: userId });
+    const totalPrice = req.body.totalPrice;
+    // const order = await Order.find({ userId: userId });
     const user = await User.find({ _id: userId });
     const payment = new PaymentSession(true, process.env.STORE_ID, process.env.STORE_PASSWORD);
     const trans_id = '_' + Math.random().toString(36).substr(2, 9) + (new Date()).getTime();
@@ -23,7 +24,7 @@ const initPayment = async (req, res) => {
 
     // Set order details
     payment.setOrderInfo({
-        total_amount: order.price, // Number field
+        total_amount: totalPrice, // Number field
         currency: "BDT", // Must be three character string
         tran_id: trans_id, // Unique Transaction id
         emi_option: 0, // 1 or 0
